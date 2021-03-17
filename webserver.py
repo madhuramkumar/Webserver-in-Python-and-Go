@@ -1,6 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class helloHandler(BaseHTTPRequestHandler):
+    # Need to learn how to use functions. Getting "undefined ..." error message
     def do_YAY(self):
         self.send_response(200)
         self.send_header('content-type', 'text/html')
@@ -16,6 +17,7 @@ class helloHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         if self.path == '/':
+            # inlined commands since I am getting error calling functions.
             self.send_response(200)
             self.send_header('content-type', 'text/html')
             self.end_headers()
