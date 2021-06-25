@@ -61,6 +61,7 @@ class Handler(BaseHTTPRequestHandler):
         params = parse_qs(query)
         
         # If the `item` or `count` key does not exist, then the request was invalid.
+<<<<<<< HEAD
         if 'item' not in params or 'count' not in params:
             self.send400()
 
@@ -70,6 +71,18 @@ class Handler(BaseHTTPRequestHandler):
         
         self.catalog.add(params['item'][0], params['count'][0])
         self.send200()
+=======
+        if 'item' in params.keys() and 'count' in params.keys():
+             # Only one value for each key should be present.
+            if len(params['item']) != 1 or len(params['count']) != 1:
+                self.send400()
+                return
+                
+            self.catalog.add(params['item'][0], params['count'][0])
+            self.send200()
+        else:
+            self.send400()
+>>>>>>> 7ffd6a0272c6e7ebf5ccc5cc3c39f4ffdd0674cf
 
     def handleList(self):
         # TODO: Return this to the user
